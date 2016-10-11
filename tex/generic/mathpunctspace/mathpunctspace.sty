@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{mathpunctspace}
+   [2011/07/01 v0.1 style file ``mathpunctspace.sty''^^J
+    by Yuwsuke KIEDA]
+
+\newif\if@postspace@comma \@postspace@commafalse
+\DeclareOption{comma}{\@postspace@commatrue}
+\DeclareOption{nocomma}{\@postspace@commafalse}
+
+\ExecuteOptions{comma}
+\ProcessOptions
+
+\if@postspace@comma
+  \newmuskip\postspace@comma
+  \postspace@comma 0mu\relax
+  \begingroup
+  \catcode`\,=\active
+  \def\x{\def,{\normalcomma\mskip\postspace@comma}}
+  \expandafter\endgroup\x%
+  \mathcode`\,="8000 % commas *only* in math-mode are made active...
+  \def\normalcomma{\mathchar"613B }% last space is *necessary*
+\fi
+\endinput
