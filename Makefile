@@ -1,4 +1,4 @@
-dir = correctmathalign
+dir = mathpunctspace
 
 all: status
 
