@@ -2,24 +2,25 @@
 
 ## Descriptions
 
-We provide a mechanism to control the space after the comma in the expressions.
+We provide a mechanism to control the space after the comma and the semicolon in the expressions.
 
 ## Version
 
-0.2
+0.3
 
 ## Usage
 
 ### Sample of Preamble
 
 ```
-\usepackage[comma= N mu]{mathpunctspace}% N = as you like
+\usepackage[comma= N mu, semicolon= M mu]{mathpunctspace}% N, M = as you like
 ```
 
 ### Options
 
  * unit: mt or other (default = mu)
  * comma: substitute skip
+ * semicolon: substitute skip
  * latexorg: original behavior of LaTeX
 
 ## Author

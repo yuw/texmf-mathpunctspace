@@ -5,9 +5,13 @@
 
 \RequirePackage{xkeyval}
 
-\newif\if@postspace@comma \@postspace@commafalse
-\newif\if@unit@mu         \@unit@mutrue
-\DeclareOptionX{comma}[0mu]{\@postspace@commatrue\def\@temp@comma@postskip{#1}}
+\newif\if@postspace@comma     \@postspace@commafalse
+\newif\if@postspace@semicolon \@postspace@semicolonfalse
+\newif\if@unit@mu             \@unit@mutrue
+\DeclareOptionX{comma}[0mu]{%
+  \@postspace@commatrue\def\@temp@comma@postskip{#1}}
+\DeclareOptionX{semicolon}[0mu]{%
+  \@postspace@semicolontrue\def\@temp@semicolon@postskip{#1}}
 \DeclareOptionX{unit}[mu]{\def\@unit@space{#1}}
 \DeclareOptionX{latexorg}{\endinput}
 
@@ -20,13 +24,18 @@
 
 \if@unit@mu
   \newmuskip\postspace@comma
+  \newmuskip\postspace@semicolon
   \@ifundefined{@temp@comma@postskip}{\def\@temp@comma@postskip{0mu}}{}
+  \@ifundefined{@temp@semicolon@postskip}{\def\@temp@semicolon@postskip{0mu}}{}
 \else
   \newskip\postspace@comma
+  \newskip\postspace@semicolon
   \@ifundefined{@temp@comma@postskip}{\def\@temp@comma@postskip{0pt}}{}
+  \@ifundefined{@temp@semicolon@postskip}{\def\@temp@semicolon@postskip{0pt}}{}
 \fi
 
 \postspace@comma\@temp@comma@postskip\relax
+\postspace@semicolon\@temp@semicolon@postskip\relax
 
 \if@postspace@comma
   \begingroup
@@ -37,7 +46,24 @@
     \def\@x@{\def,{\normalcomma\hskip\postspace@comma}}
   \fi
   \expandafter\endgroup\@x@%
-  \mathcode`\,="8000 % commas *only* in math-mode are made active...
-  \def\normalcomma{\mathchar"613B }% last space is *necessary*
+  % *only* in math-mode are made active...
+  \mathcode`\,="8000
+  % last space is *necessary*
+  \def\normalcomma{\mathchar"613B }
 \fi
+\if@postspace@semicolon
+  \begingroup
+  \catcode`\;=\active
+  \if@unit@mu
+    \def\@x@{\def;{\normalsemicolon\mskip\postspace@semicolon}}
+  \else
+    \def\@x@{\def;{\normalsemicolon\hskip\postspace@semicolon}}
+  \fi
+  \expandafter\endgroup\@x@%
+  % *only* in math-mode are made active...
+  \mathcode`\;="8000
+  % last space is *necessary*
+  \def\normalsemicolon{\mathchar"603B }
+\fi
+
 \endinput
