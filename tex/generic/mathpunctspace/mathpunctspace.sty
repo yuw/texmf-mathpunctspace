@@ -1,22 +1,24 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{mathpunctspace}
-   [2011/07/01 v0.1 style file ``mathpunctspace.sty''^^J
-    by Yuwsuke KIEDA]
+   [2017/04/03 v1.0 style file ``mathpunctspace.sty''^^J
+    by Yuwsuke Kieda]
+
+\RequirePackage{xkeyval}
 
 \newif\if@postspace@comma \@postspace@commafalse
-\DeclareOption{comma}{\@postspace@commatrue}
-\DeclareOption{nocomma}{\@postspace@commafalse}
+\newmuskip\postspace@comma
+\DeclareOptionX{comma}{\@postspace@commatrue\postspace@comma#1\relax\def\comma@space{}}
+\DeclareOptionX{latexorg}{\endinput}
 
-\ExecuteOptions{comma}
-\ProcessOptions
+\@ifundefined{comma@space}{\postspace@comma0mu\relax}{}
+
+\ProcessOptionsX
 
 \if@postspace@comma
-  \newmuskip\postspace@comma
-  \postspace@comma 0mu\relax
   \begingroup
   \catcode`\,=\active
-  \def\x{\def,{\normalcomma\mskip\postspace@comma}}
-  \expandafter\endgroup\x%
+  \def\@x@{\def,{\normalcomma\mskip\postspace@comma}}
+  \expandafter\endgroup\@x@%
   \mathcode`\,="8000 % commas *only* in math-mode are made active...
   \def\normalcomma{\mathchar"613B }% last space is *necessary*
 \fi

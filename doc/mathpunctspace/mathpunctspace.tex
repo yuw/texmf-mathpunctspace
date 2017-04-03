@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage[comma=10mu]{mathpunctspace}
+
+\title{Control the Space After Punctuation in Expressions}
+\author{Yuwsuke Kieda}
+\date{2017/04/03 v1.0}
+
+\begin{document}
+\maketitle
+
+\section{Descriptions}
+
+We provide a mechanism to control the space after the comma in the expressions.
+
+\section{Version}
+
+1.0
+
+\section{Usage}
+
+\subsection{Sample of Preamble}
+
+\begin{verbatim}
+\usepackage[comma=2mu]{mathpunctspace}
+\end{verbatim}
+
+\subsection{Options}
+
+\begin{itemize}
+ \item comma: substitute muskip
+ \item latexorg: original behavior of LaTeX
+\end{itemize}
+
+\section{License}
+
+BSD 2-Clause License
+
+\section{Repository}
+
+\texttt{https://github.com/yuw/texmf-mathpunctspace}
+
+\section{Sample}
+
+\texttt{comma=10mu}
+
+$1,000$
+
+\end{document}
