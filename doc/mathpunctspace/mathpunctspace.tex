@@ -1,11 +1,10 @@
 \documentclass{article}
 
-\setbox9\hbox{$\mskip\thinmuskip$}%
-\usepackage[unit=pt,comma=\dimexpr\fontdimen2\the\font-\wd9\relax,semicolon=\dimexpr\fontdimen2\the\font-\wd9\relax]{mathpunctspace}
+\usepackage{mathpunctspace}
 
 \title{Control the Space After Punctuation in Expressions}
 \author{Yuwsuke Kieda}
-\date{2017/04/03 v0.3}
+\date{2017/04/03 v0.4}
 
 \begin{document}
 \maketitle
@@ -16,24 +15,31 @@ We provide a mechanism to control the space after the comma in the expressions.
 
 \section{Version}
 
-0.3
+0.4
 
 \section{Usage}
 
 \subsection{Sample of Preamble}
 
 \noindent
+\verb!\!\texttt{usepackage[comma=natural,semicolon=natural]}\verb!{mathpunctspace}!
+
+\noindent
 \verb!\!\texttt{usepackage[comma=$N$mu,semicolon=$M$mu]}\verb!{mathpunctspace}!
+
+\noindent
+\verb!\!\texttt{usepackage[unit=pt,comma=$N$pt,semicolon=$M$pt]}\verb!{mathpunctspace}!
 
 \subsection{Options}
 
 \begin{itemize}
  \item unit: mu or other (default = mu)
- \item comma: substitute skip
- \item semicolon: substitute skip
-% \item colon: substitute skip
+ \item comma: substitute keyword natural or skip (default = natural)
+ \item semicolon: substitute keyword natural or skip (default = natural)
  \item latexorg: original behavior of LaTeX
 \end{itemize}
+
+Remark: keyword ``natural'' mean the spacing of the in-line.
 
 \section{License}
 
@@ -46,8 +52,7 @@ BSD 2-Clause License
 \section{Sample}
 
 \begin{verbatim}
-\setbox9\hbox{$\mskip\thinmuskip$}%
-\usepackage[unit=pt,comma=\dimexpr\fontdimen2\the\font-\wd9\relax,semicolon=\dimexpr\fontdimen2\the\font-\wd9\relax]{mathpunctspace}
+\usepackage[comma=natural,semicolon=natural]{mathpunctspace}
 \end{verbatim}
 
 Lorem ipsum dolor sit amet $(x, y)$, consectetuer adipiscing elit.
