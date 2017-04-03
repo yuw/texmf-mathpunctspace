@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{mathpunctspace}
-   [2017/04/03 v0.4 style file ``mathpunctspace.sty''^^J
+   [2017/04/03 v1.0 style file ``mathpunctspace.sty''^^J
     by Yuwsuke Kieda]
 
 \RequirePackage{xkeyval}
@@ -26,30 +26,32 @@
 \def\@temp@comma@postskip@natural{natural}
 \ifx\@temp@comma@postskip\@temp@comma@postskip@natural
   \newskip\postspace@comma
-  \def\@temp@comma@postskip{\dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax}
+  \def\@temp@comma@postskip{%
+    \dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax
+    plus  \fontdimen3\the\font
+    minus \fontdimen4\the\font}
 \else
   \@postspace@comma@naturalfalse
   \if@unit@mu
     \newmuskip\postspace@comma
-    \@ifundefined{@temp@comma@postskip}{\def\@temp@comma@postskip{0mu}}{}
   \else
     \newskip\postspace@comma
-    \def\@temp@comma@postskip{\dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax}
   \fi
 \fi
 
 \def\@semicolon@postskip@natural{natural}
 \ifx\@temp@semicolon@postskip\@semicolon@postskip@natural
   \newskip\postspace@semicolon
-  \def\@temp@semicolon@postskip{\dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax}
+  \def\@temp@semicolon@postskip{%
+    \dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax
+    plus  \fontdimen3\the\font
+    minus \fontdimen4\the\font}
 \else
   \@postspace@semicolon@naturalfalse
   \if@unit@mu
     \newmuskip\postspace@semicolon
-    \@ifundefined{@temp@semicolon@postskip}{\def\@temp@semicolon@postskip{0mu}}{}
   \else
     \newskip\postspace@semicolon
-    \def\@temp@semicolon@postskip{\dimexpr\fontdimen2\the\font-\wd\@tempboxa\relax}
   \fi
 \fi
 

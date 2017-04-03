@@ -6,7 +6,7 @@ We provide a mechanism to control the space after the comma and the semicolon in
 
 ## Version
 
-0.4
+1.0
 
 ## Usage
 
@@ -18,9 +18,9 @@ We provide a mechanism to control the space after the comma and the semicolon in
 
 ### Options
 
- * unit: mt or other (default = mu)
- * comma: substitute keyword natural or skip (default = natural)
- * semicolon: substitute keyword natural or skip (default = natural)
+ * unit: mt or other (default: mu)
+ * comma: substitute keyword natural or skip (default: natural)
+ * semicolon: substitute keyword natural or skip (default: natural)
  * latexorg: original behavior of LaTeX
 
 Remark: keyword ``natural'' mean the spacing of the in-line.
