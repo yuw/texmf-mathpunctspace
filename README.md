@@ -6,7 +6,7 @@ We provide a mechanism to control the space after the comma in the expressions.
 
 ## Version
 
-1.0
+0.2
 
 ## Usage
 
@@ -18,7 +18,8 @@ We provide a mechanism to control the space after the comma in the expressions.
 
 ### Options
 
- * comma: substitute muskip
+ * unit: mt or other (default = mu)
+ * comma: substitute skip
  * latexorg: original behavior of LaTeX
 
 ## Author

@@ -1,6 +1,7 @@
 \documentclass{article}
 
-\usepackage[comma=10mu]{mathpunctspace}
+\setbox9\hbox{$\mskip\thinmuskip$}%
+\usepackage[unit=pt,comma=\dimexpr\fontdimen2\the\font-\wd9\relax]{mathpunctspace}
 
 \title{Control the Space After Punctuation in Expressions}
 \author{Yuwsuke Kieda}
@@ -15,20 +16,22 @@ We provide a mechanism to control the space after the comma in the expressions.
 
 \section{Version}
 
-1.0
+0.2
 
 \section{Usage}
 
 \subsection{Sample of Preamble}
 
-\begin{verbatim}
-\usepackage[comma=2mu]{mathpunctspace}
-\end{verbatim}
+\noindent
+\verb!\!\texttt{usepackage[comma=$N$mu]}\verb!{mathpunctspace}!
 
 \subsection{Options}
 
 \begin{itemize}
- \item comma: substitute muskip
+ \item unit: mu or other (default = mu)
+ \item comma: substitute skip
+% \item semicolon: substitute skip
+% \item colon: substitute skip
  \item latexorg: original behavior of LaTeX
 \end{itemize}
 
@@ -42,8 +45,11 @@ BSD 2-Clause License
 
 \section{Sample}
 
-\texttt{comma=10mu}
+\begin{verbatim}
+\setbox9\hbox{$\mskip\thinmuskip$}%
+\usepackage[unit=pt,comma=\dimexpr\fontdimen2\the\font-\wd9\relax]{mathpunctspace}
+\end{verbatim}
 
-$1,000$
+Lorem ipsum dolor sit amet $(x, y)$, consectetuer adipiscing elit.
 
 \end{document}

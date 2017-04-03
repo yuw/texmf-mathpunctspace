@@ -1,23 +1,41 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{mathpunctspace}
-   [2017/04/03 v1.0 style file ``mathpunctspace.sty''^^J
+   [2017/04/03 v0.2 style file ``mathpunctspace.sty''^^J
     by Yuwsuke Kieda]
 
 \RequirePackage{xkeyval}
 
 \newif\if@postspace@comma \@postspace@commafalse
-\newmuskip\postspace@comma
-\DeclareOptionX{comma}{\@postspace@commatrue\postspace@comma#1\relax\def\comma@space{}}
+\newif\if@unit@mu         \@unit@mutrue
+\DeclareOptionX{comma}[0mu]{\@postspace@commatrue\def\@temp@comma@postskip{#1}}
+\DeclareOptionX{unit}[mu]{\def\@unit@space{#1}}
 \DeclareOptionX{latexorg}{\endinput}
 
-\@ifundefined{comma@space}{\postspace@comma0mu\relax}{}
-
 \ProcessOptionsX
+
+\@ifundefined{@unit@space}{\def\@unit@space{mu}}{}
+
+\def\@tmp@unit@mu{mu}
+\ifx\@unit@space\@tmp@unit@mu\@unit@mutrue\else\@unit@mufalse\fi
+
+\if@unit@mu
+  \newmuskip\postspace@comma
+  \@ifundefined{@temp@comma@postskip}{\def\@temp@comma@postskip{0mu}}{}
+\else
+  \newskip\postspace@comma
+  \@ifundefined{@temp@comma@postskip}{\def\@temp@comma@postskip{0pt}}{}
+\fi
+
+\postspace@comma\@temp@comma@postskip\relax
 
 \if@postspace@comma
   \begingroup
   \catcode`\,=\active
-  \def\@x@{\def,{\normalcomma\mskip\postspace@comma}}
+  \if@unit@mu
+    \def\@x@{\def,{\normalcomma\mskip\postspace@comma}}
+  \else
+    \def\@x@{\def,{\normalcomma\hskip\postspace@comma}}
+  \fi
   \expandafter\endgroup\@x@%
   \mathcode`\,="8000 % commas *only* in math-mode are made active...
   \def\normalcomma{\mathchar"613B }% last space is *necessary*
