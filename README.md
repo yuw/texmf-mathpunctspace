@@ -13,7 +13,7 @@ We provide a mechanism to control the space after the comma in the expressions.
 ### Sample of Preamble
 
 ```
-\usepackage[comma=2mu]{mathpunctspace}
+\usepackage[comma= N mu]{mathpunctspace}% N = as you like
 ```
 
 ### Options
